@@ -1,9 +1,9 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { Order } from './models/order.entity';
+import { Order } from './orders/order.entity';
 
 export const databaseConfig: TypeOrmModuleOptions = {
   type: 'sqlite',
   database: 'orders.db',
-  entities: [Order], // Specify entities here
+  entities: [Order],
   synchronize: true,
 };

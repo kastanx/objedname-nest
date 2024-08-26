@@ -1,5 +1,5 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-import { OrderStatus } from '../orders/dto/create-order.dto';
+import { OrderStatus } from './dto/create-order.dto';
 
 @Entity()
 export class Order {

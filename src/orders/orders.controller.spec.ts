@@ -1,10 +1,12 @@
 import { NotFoundException } from '@nestjs/common';
+import { JwtModule } from '@nestjs/jwt';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken, TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource, Repository } from 'typeorm';
-import { Order } from '../models/order.entity';
+import { JWT_SECRET } from '../auth/auth.service';
 import { CreateOrderDto, OrderStatus } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
+import { Order } from './order.entity';
 import { OrdersController } from './orders.controller';
 import { OrdersService } from './orders.service';
 
@@ -25,6 +27,11 @@ describe('OrdersController', () => {
           synchronize: true,
         }),
         TypeOrmModule.forFeature([Order]),
+        JwtModule.register({
+          global: true,
+          secret: JWT_SECRET,
+          signOptions: { expiresIn: '60s' },
+        }),
       ],
       controllers: [OrdersController],
       providers: [OrdersService],
