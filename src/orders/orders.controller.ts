@@ -8,7 +8,13 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
-import { ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiOperation,
+  ApiParam,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 import { plainToClass } from 'class-transformer';
 import { AuthGuard } from '../auth/auth.guard';
 import { CreateOrderDto } from './dto/create-order.dto';
@@ -16,12 +22,13 @@ import { OrderResponseDto } from './dto/order-response.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
 import { OrdersService } from './orders.service';
 
+@ApiBearerAuth('JWT-auth')
 @ApiTags('orders')
 @Controller('orders')
+@UseGuards(AuthGuard)
 export class OrdersController {
   constructor(private readonly ordersService: OrdersService) {}
 
-  @UseGuards(AuthGuard)
   @Get()
   @ApiOperation({ summary: 'Retrieve all orders' })
   @ApiResponse({
@@ -36,7 +43,6 @@ export class OrdersController {
     return order.map((order) => plainToClass(OrderResponseDto, order));
   }
 
-  @UseGuards(AuthGuard)
   @Get(':id')
   @ApiOperation({ summary: 'Retrieve a specific order by ID' })
   @ApiParam({ name: 'id', required: true, description: 'The ID of the order' })
@@ -52,7 +58,6 @@ export class OrdersController {
     return plainToClass(OrderResponseDto, order);
   }
 
-  @UseGuards(AuthGuard)
   @Post()
   @ApiOperation({ summary: 'Create a new order' })
   @ApiResponse({
@@ -69,7 +74,6 @@ export class OrdersController {
     return plainToClass(OrderResponseDto, order);
   }
 
-  @UseGuards(AuthGuard)
   @Patch(':id')
   @ApiOperation({ summary: 'Update an order by ID' })
   @ApiResponse({
@@ -88,7 +92,6 @@ export class OrdersController {
     return plainToClass(OrderResponseDto, order);
   }
 
-  @UseGuards(AuthGuard)
   @Delete(':id')
   @ApiOperation({ summary: 'Delete an order by ID' })
   @ApiResponse({
