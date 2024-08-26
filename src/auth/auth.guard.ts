@@ -8,7 +8,7 @@ import {
 import { Reflector } from '@nestjs/core';
 import { JwtService } from '@nestjs/jwt';
 import { Request } from 'express';
-import { Role, ROLES_KEY } from 'src/roles/roles.decorator';
+import { Role, ROLES_KEY } from '../roles/roles.decorator';
 import { JWT_SECRET } from './auth.service';
 
 @Injectable()
