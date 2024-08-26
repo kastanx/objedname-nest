@@ -1,85 +1,68 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+1. Jak vytvoříte nový modul v NestJS? Jaké jsou výhody
+   použití modulů v aplikaci?
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+nest generate module (module_name) nebo ručně.
+Rozdělují aplikaci do logických a menších částí a mohou se znovu použít.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+2. Co jsou middleware v NestJS a jak se liší od middleware v
+   jiných frameworkách? Kdy byste použili middleware v
+   aplikaci?
 
-## Description
+Middleware se vykonává těsně před tím než request dojde do controlleru. Nejčastější použití je pro autentikaci a logování.
+Middleware můžu aplikovat na určitý modul nebo cestu.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+3. Co jsou to namespacy v PHP a jak využívají autoloading?
+   Jak může autoloading zjednodušit práci s velkými kódy?
 
-## Project setup
+Díky namespacům můžu oddělit a zorganizovat classy a předejít konfliktům při pojmenování.
+Autoloading pomáhá v tom že není třeba používat require nebo include.
 
-```bash
-$ npm install
-```
+4. Jaký je rozdíl mezi Guards a Interceptors v NestJS? Jak
+   byste použili Guards a Interceptors k zajištění bezpečnosti
+   a logování ve vaší aplikaci?
 
-## Compile and run the project
+Guards v NestJS kontrolují oprávnění k přístupu k rousourcům, zatímco Interceptors modifikují požadavky nebo odpovědi.
+Guards použijete k ochraně endpointů, Interceptors zase k logování a transformaci dat.
 
-```bash
-# development
-$ npm run start
+5. Vysvětlete rozdíl mezi == a === v PHP. Kdy byste měli
+   použít každý z těchto operátorů?
 
-# watch mode
-$ npm run start:dev
+== porovnává hodnoty bez ohledu na typ, zatímco === vyžaduje, aby se shodoval typ i hodnota.
+== použijte, pokud potřebujete porovnat hodnoty různého typu
+=== pro striktní porovnání.
 
-# production mode
-$ npm run start:prod
-```
+6. Jak funguje systém Dependency Injection v NestJS? Jak
+   může DI zjednodušit testování a správu závislostí v
+   aplikaci?
 
-## Run tests
+DI v NestJS automaticky poskytuje classám jejich závislosti. DI zjednodušuje testování pomocí snadného nahrazování závislostí mockovanými objekty a zlepšuje organizaci kódu.
 
-```bash
-# unit tests
-$ npm run test
+7. Vysvětlete rozdíl mezi trait a interface v PHP. Kdy byste
+   použili trait a kdy byste použili interface?
 
-# e2e tests
-$ npm run test:e2e
+Trait v PHP sdílí konkrétní metody mezi třídami, zatímco Interface definuje rozhraní, které musí třídy implementovat.
+Trait použijte ke sdílení kódu, Interface k definování kontraktů pro různé třídy.
 
-# test coverage
-$ npm run test:cov
-```
+8. Co je to DTO a jaký je jeho účel v NestJS? Jak byste použili
+   DTO k validaci a transformaci dat v příchozích a odchozích
+   HTTP požadavcích?
 
-## Resources
+Data Transfer Object slouží k přenosu dat v aplikaci, často se používá k validaci a transformaci dat v requestech. DTO umožňuje snadno definovat a ověřovat strukturu dat pomocí validátorů jako class-validator, které jsem využil v řešení tohoto zadání.
 
-Check out a few resources that may come in handy when working with NestJS:
+9. Jak fungují sessions a cookies v PHP? Jak můžete v PHP
+   pracovat s sessions a jak zajistíte bezpečnost při práci s
+   cookies?
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+Session vytvoří u klienta cookie s identifikátorem a na straně serveru ukládá data. Browser cookies posílá automaticky v každém requestu takže si pak PHP může spárovat data.
 
-## Support
+11. Co jsou to dekorátory? K čemu slouží? Lze je použít ve
+    Vanilla JS?
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+Dekorátor je funkce která se aplikuje na třidu/metodu/atribut a upravuje jejich chování. ve Vanilla JS jde myslím jen s Babelem.
 
-## Stay in touch
+12. Co je to TypeScript, jaké má výhody a nevýhody oproti
+    Vanilla JS?
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+Nadstavba Javasriptu která přidává statické typy a jiné důležité funkce.
+Výhodou je lepší čitelnost a typová bezpečnost.
+Nevýhodu možná vidím v tom že ne všechny knihovny mají kvalitní typové definice, někdy s tím bývá problém.
