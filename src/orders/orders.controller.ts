@@ -17,6 +17,7 @@ import {
 } from '@nestjs/swagger';
 import { plainToClass } from 'class-transformer';
 import { AuthGuard } from '../auth/auth.guard';
+import { Role, Roles } from '../roles/roles.decorator';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { OrderResponseDto } from './dto/order-response.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
@@ -30,6 +31,7 @@ export class OrdersController {
   constructor(private readonly ordersService: OrdersService) {}
 
   @Get()
+  @Roles(Role.Admin)
   @ApiOperation({ summary: 'Retrieve all orders' })
   @ApiResponse({
     status: 200,
@@ -44,6 +46,7 @@ export class OrdersController {
   }
 
   @Get(':id')
+  @Roles(Role.Admin)
   @ApiOperation({ summary: 'Retrieve a specific order by ID' })
   @ApiParam({ name: 'id', required: true, description: 'The ID of the order' })
   @ApiResponse({
@@ -59,6 +62,7 @@ export class OrdersController {
   }
 
   @Post()
+  @Roles(Role.Admin)
   @ApiOperation({ summary: 'Create a new order' })
   @ApiResponse({
     status: 201,
@@ -75,6 +79,7 @@ export class OrdersController {
   }
 
   @Patch(':id')
+  @Roles(Role.Admin)
   @ApiOperation({ summary: 'Update an order by ID' })
   @ApiResponse({
     status: 200,
@@ -93,6 +98,7 @@ export class OrdersController {
   }
 
   @Delete(':id')
+  @Roles(Role.Admin)
   @ApiOperation({ summary: 'Delete an order by ID' })
   @ApiResponse({
     status: 204,
