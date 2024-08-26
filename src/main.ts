@@ -19,6 +19,7 @@ async function bootstrap() {
     .setDescription('API for managing orders')
     .setVersion('1.0')
     .addTag('orders')
+    .addTag('auth')
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
